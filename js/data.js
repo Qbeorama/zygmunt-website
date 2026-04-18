@@ -83,7 +83,7 @@ const ENDINGS = [
     tarotCard: "07-TheChariot",
     variant: "video",
     video: "videos/pursue-lazarz-kiselew-ending.mp4",
-    text: "Durand uciekał — przez Wiedeń, Pragę, Warszawę — a Zygmunt go ścigał. Nie z nienawiści. Z potrzeby zamknięcia rozdziału. W końcu odnalazł go w Kiszyniowie, w hotelowym pokoju pełnym map i niedokończonych listów. Łazarz Kiselew, dawny przyjaciel, przyglądał się im z kąta. Nikt nie odszedł tej nocy.",
+    textKey: "lazarz",
   },
   {
     id: "oblivion",

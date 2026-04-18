@@ -155,11 +155,29 @@
     }, 1600);
   }
 
+  // --- MARKDOWN ---
+  function renderMarkdown(text) {
+    return text
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/__(.+?)__/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/_(.+?)_/g, '<em>$1</em>');
+  }
+
+  function setMarkdownText(el, text) {
+    el.innerHTML = renderMarkdown(text);
+  }
+
   // --- ENDINGS ---
   function showEnding(ending) {
     const typeLabel = ending.type === 'canonic'
       ? 'KANONICZNE ZAKOŃCZENIE'
       : 'NIEKANONICZNE ZAKOŃCZENIE';
+
+    const text = ending.textKey
+      ? (window.TEXTS && window.TEXTS[ending.textKey]) || ''
+      : (ending.text || '');
 
     if (ending.variant === 'video') {
       const vid = document.getElementById('ending-video');
@@ -167,13 +185,13 @@
       vid.play().catch(() => {});
       document.getElementById('ending-video-type').textContent = typeLabel;
       document.getElementById('ending-video-title').textContent = ending.title;
-      document.getElementById('ending-video-text').textContent = ending.text;
+      setMarkdownText(document.getElementById('ending-video-text'), text);
       showScreen('endingVideo');
     } else {
       document.getElementById('ending-img').src = ending.image;
       document.getElementById('ending-image-type').textContent = typeLabel;
       document.getElementById('ending-image-title').textContent = ending.title;
-      document.getElementById('ending-image-text').textContent = ending.text;
+      setMarkdownText(document.getElementById('ending-image-text'), text);
       showScreen('endingImage');
     }
   }

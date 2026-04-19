@@ -264,7 +264,7 @@ html, body {
 .ending-video-overlay {
   position: relative;
   z-index: 2;
-  max-width: 650px;
+  max-width: min(130ch, 90vw);
   text-align: center;
   padding: 2rem;
 }
@@ -288,9 +288,17 @@ html, body {
 }
 
 .ending-text {
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   color: var(--text);
   line-height: 1.8;
+}
+
+.ending-text p {
+  margin: 0;
+}
+
+.ending-text p + p {
+  margin-top: 1.2em;
 }
 
 .btn-again {

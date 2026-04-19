@@ -18,6 +18,16 @@ const QUESTIONS = [
       { text: "Śmiertelnym wrogiem, którego należało zniszczyć.", tags: ["durand-enemy"] },
       { text: "Lustrzanym odbiciem — bratem w duchu, nie z krwi.", tags: ["durand-mirror"] },
       { text: "Nikim. Przypadkową postacią na marginesie historii.", tags: ["durand-nobody"] },
+      { text: "Dawnym mentorem i przyjacielem, który zagubił się w pysze.", tags: ["durand-mentor"] },
+    ],
+  },
+  {
+    id: "henoch",
+    text: "Czym były dla Zygmunta Klucze Henocha?",
+    answers: [
+      { text: "Niebezpieczną obsesją, którą należało zniszczyć.", tags: ["anti-esoteric"] },
+      { text: "Tajemnicą, którą należało zgłębić — cokolwiek by to kosztowało.", tags: ["klucze-henocha"] },
+      { text: "Kolejnym tropem w długim i żmudnym śledztwie.", tags: ["procedural"] },
     ],
   },
 ];
@@ -64,6 +74,16 @@ const ENDINGS = [
     variant: "image",
     image: "Ending-Image-placeholder.png",
     text: "Zygmunt zasiadł na tronie z listów — tysiące kartek ułożonych w monstrualny fotel. Ogłosił się władcą korespondencji. Jego poddani? Wszyscy, którzy kiedykolwiek napisali do niego choćby słowo.",
+  },
+  {
+    id: "ninth-gate",
+    title: "Dziewiąta Brama",
+    type: "non-canonic",
+    requiredTags: ["durand-mentor", "klucze-henocha"],
+    tarotCard: "15-TheDevil",
+    variant: "video",
+    video: "videos/ninth-gate-ending.mp4",
+    textKey: "ninth-gate",
   },
   {
     id: "czarna-wazka",

@@ -157,12 +157,19 @@
 
   // --- MARKDOWN ---
   function renderMarkdown(text) {
-    return text
-      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/__(.+?)__/g, '<strong>$1</strong>')
-      .replace(/\*(.+?)\*/g, '<em>$1</em>')
-      .replace(/_(.+?)_/g, '<em>$1</em>');
+    const escaped = text
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return escaped
+      .split(/\n\n+/)
+      .map(para => para
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/__(.+?)__/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/_(.+?)_/g, '<em>$1</em>')
+        .replace(/\n/g, '<br>')
+      )
+      .map(para => `<p>${para}</p>`)
+      .join('');
   }
 
   function setMarkdownText(el, text) {

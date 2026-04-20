@@ -45,16 +45,6 @@ const QUESTIONS = [
 // The algorithm picks the first 3 whose requiredTags are ALL present in the player's tags.
 const ENDINGS = [
   {
-    id: "cannibal",
-    title: "Uczta Zygmunta",
-    type: "non-canonic",
-    requiredTags: ["insane", "durand-enemy"],
-    tarotCard: "13-Death",
-    variant: "image",
-    image: "Ending-Image-placeholder.png",
-    text: "W mroku opuszczonej jadalni Zygmunt zastawił ostatnią wieczerzę. Durand nie wiedział, że jest zaproszony — jako danie główne. Szaleństwo ma swój smak, a Zygmunt odkrył go tej nocy.",
-  },
-  {
     id: "mirror",
     title: "Lustro i Cień",
     type: "canonic",
@@ -63,26 +53,6 @@ const ENDINGS = [
     variant: "video",
     video: "videos/peaceful-remain-in-paris-ending.mp4",
     text: "Zygmunt odnalazł w Durandzie siebie samego. Dwa cienie, które przez lata tańczyły wokół jednego płomienia, w końcu zlały się w jedno. Nie było zwycięzcy. Nie było przegranego. Był tylko spokój.",
-  },
-  {
-    id: "wanderer",
-    title: "Wieczny Wędrowiec",
-    type: "canonic",
-    requiredTags: ["sane"],
-    tarotCard: "00-TheFool",
-    variant: "image",
-    image: "Ending-Image-placeholder.png",
-    text: "Zygmunt odłożył pióro. Ostatni list został wysłany. Europa rozciągała się przed nim jak niezapisana kartka — i ruszył przed siebie, zostawiając wszystko za sobą.",
-  },
-  {
-    id: "madman-king",
-    title: "Król Szaleńców",
-    type: "non-canonic",
-    requiredTags: ["insane"],
-    tarotCard: "04-TheEmperor",
-    variant: "image",
-    image: "Ending-Image-placeholder.png",
-    text: "Zygmunt zasiadł na tronie z listów — tysiące kartek ułożonych w monstrualny fotel. Ogłosił się władcą korespondencji. Jego poddani? Wszyscy, którzy kiedykolwiek napisali do niego choćby słowo.",
   },
   {
     id: "ninth-gate",
@@ -113,16 +83,6 @@ const ENDINGS = [
     variant: "video",
     video: "videos/pursue-lazarz-kiselew-ending.mp4",
     textKey: "lazarz",
-  },
-  {
-    id: "oblivion",
-    title: "Zapomnienie",
-    type: "non-canonic",
-    requiredTags: ["durand-nobody"],
-    tarotCard: "16-TheTower",
-    variant: "video",
-    video: "videos/peaceful-remain-in-paris-ending.mp4",
-    text: "Nikt nie pamiętał Zygmunta. Listy spłonęły w kominku jakiejś wiedeńskiej kamienicy. Durand — jeśli w ogóle istniał — zniknął bez śladu. Historia nie znosi próżni, ale czasem robi wyjątek.",
   },
   {
     id: "lina-keller",
@@ -163,15 +123,5 @@ const ENDINGS = [
     variant: "video",
     video: "videos/gus-superman-clip.mp4",
     textKey: "alistair-mckinnon",
-  },
-  {
-    id: "reunion",
-    title: "Ostatnie Spotkanie",
-    type: "canonic",
-    requiredTags: [],
-    tarotCard: "21-TheWorld",
-    variant: "image",
-    image: "Ending-Image-placeholder.png",
-    text: "W 1932 roku Zygmunt pojawił się na progu Duranda. Nie powiedział ani słowa. Postawił na stole butelkę wina, dwa kieliszki, i stos nieprzeczytanych listów. Siedzieli w ciszy aż do świtu.",
   },
 ];

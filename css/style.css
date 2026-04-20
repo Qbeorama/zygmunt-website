@@ -6,6 +6,24 @@
 /* --- RESET & BASE --- */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* --- ENDINGS COUNTER --- */
+.endings-counter {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  color: var(--gold-dim);
+  letter-spacing: 0.1em;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.endings-counter.visible {
+  opacity: 1;
+}
+
 :root {
   --bg: #0a0a0a;
   --bg-card: #141414;
@@ -347,6 +365,12 @@ html, body {
 @media (max-width: 600px) {
   html, body {
     font-size: 16px;
+  }
+
+  .endings-counter {
+    top: 0.8rem;
+    right: 1rem;
+    font-size: 0.65rem;
   }
 
   /* Questions */

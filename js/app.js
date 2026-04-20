@@ -10,6 +10,31 @@
   let matchedEndings = [];
   let carouselIndex = 0; // which of the 3 is in front (0, 1, 2)
 
+  // --- ENDINGS COUNTER (persisted in localStorage) ---
+  const STORAGE_KEY = 'discoveredEndings';
+  const endingsCounterEl = document.getElementById('endings-counter');
+
+  function getDiscoveredEndings() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      return Array.isArray(stored) ? new Set(stored) : new Set();
+    } catch { return new Set(); }
+  }
+
+  function markEndingDiscovered(endingId) {
+    const discovered = getDiscoveredEndings();
+    discovered.add(endingId);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...discovered]));
+    updateEndingsCounter();
+  }
+
+  function updateEndingsCounter() {
+    const discovered = getDiscoveredEndings().size;
+    const total = ENDINGS.length;
+    endingsCounterEl.textContent = `Odkryłeś ${discovered} z ${total} zakończeń`;
+    endingsCounterEl.classList.add('visible');
+  }
+
   // --- DOM refs ---
   const screens = {
     questions: document.getElementById('screen-questions'),
@@ -184,6 +209,7 @@
 
   // --- ENDINGS ---
   function showEnding(ending) {
+    markEndingDiscovered(ending.id);
     const typeLabel = ending.type === 'canonic'
       ? 'KANONICZNE ZAKOŃCZENIE'
       : 'NIEKANONICZNE ZAKOŃCZENIE';
@@ -233,5 +259,6 @@
   }
 
   // --- INIT ---
+  updateEndingsCounter();
   renderQuestion();
 })();

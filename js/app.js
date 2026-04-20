@@ -8,7 +8,7 @@
   let collectedTags = [];
   let currentQuestion = 0;
   let matchedEndings = [];
-  let carouselIndex = 0; // which of the 3 is in front (0, 1, 2)
+  let carouselIndex = 0; // which card is in front (0 … N-1)
 
   // --- ENDINGS COUNTER (persisted in localStorage) ---
   const STORAGE_KEY = 'discoveredEndings';
@@ -47,7 +47,8 @@
   const zoomOverlay = document.getElementById('zoom-overlay');
   const zoomCardImg = document.getElementById('zoom-card-img');
 
-  const carouselCards = document.querySelectorAll('.carousel-card');
+  const carouselEl = document.querySelector('.carousel');
+  let carouselCards = [];
   const btnPrev = document.getElementById('btn-prev');
   const btnNext = document.getElementById('btn-next');
 
@@ -93,66 +94,95 @@
   // --- ENDING SELECTION ---
   function selectEndings() {
     matchedEndings = [];
+    const added = new Set();
+
+    // 1. Add endings whose requiredTags ALL match the player's tags
     for (const ending of ENDINGS) {
-      if (matchedEndings.length >= 3) break;
       if (ending.requiredTags.every(t => collectedTags.includes(t))) {
         matchedEndings.push(ending);
-      }
-    }
-    // Fallback: pad with unmatched endings
-    if (matchedEndings.length < 3) {
-      for (const ending of ENDINGS) {
-        if (matchedEndings.length >= 3) break;
-        if (!matchedEndings.includes(ending)) matchedEndings.push(ending);
+        added.add(ending.id);
       }
     }
 
-    // Set card face images (cards are revealed from the start)
-    carouselCards.forEach((card, i) => {
-      card.querySelector('img').src = 'Cards-jpg/' + matchedEndings[i].tarotCard + '.jpg';
+    // 2. Guarantee the three always-unlocked endings are present
+    for (const id of ALWAYS_UNLOCKED) {
+      if (!added.has(id)) {
+        const ending = ENDINGS.find(e => e.id === id);
+        if (ending) {
+          matchedEndings.push(ending);
+          added.add(id);
+        }
+      }
+    }
+
+    // Build carousel card DOM elements
+    carouselEl.innerHTML = '';
+    carouselCards = matchedEndings.map((ending, i) => {
+      const card = document.createElement('div');
+      card.className = 'carousel-card';
+      card.dataset.slot = i;
+      const img = document.createElement('img');
+      img.src = 'Cards-jpg/' + ending.tarotCard + '.jpg';
+      img.alt = 'Karta tarota';
+      card.appendChild(img);
+      carouselEl.appendChild(card);
+      return card;
     });
 
     carouselIndex = 0;
   }
 
   // --- CIRCULAR CAROUSEL ---
-  // 3 visual slots on an elliptical path:
-  //   Front (bottom-center): large, bright, high z-index
-  //   Back-left: smaller, dimmed
-  //   Back-right: smaller, dimmed
+  // Always shows 3 visual slots (front, back-left, back-right),
+  // but cycles through N total cards.
   function getSlotParams() {
     const narrow = window.innerWidth <= 600;
     const xOff = narrow ? 110 : 180;
     const yOff = narrow ? 20 : 30;
-    return [
-      { x: 0, y: yOff, scale: 1, opacity: 1, brightness: 1, z: 3 },
-      { x: -xOff, y: -yOff, scale: 0.72, opacity: 0.55, brightness: 0.6, z: 1 },
-      { x: xOff, y: -yOff, scale: 0.72, opacity: 0.55, brightness: 0.6, z: 1 },
-    ];
+    return {
+      front:     { x: 0, y: yOff, scale: 1, opacity: 1, brightness: 1, z: 3 },
+      backLeft:  { x: -xOff, y: -yOff, scale: 0.72, opacity: 0.55, brightness: 0.6, z: 1 },
+      backRight: { x: xOff, y: -yOff, scale: 0.72, opacity: 0.55, brightness: 0.6, z: 1 },
+      hidden:    { x: 0, y: -yOff, scale: 0.5, opacity: 0, brightness: 0.4, z: 0 },
+    };
   }
 
   function updateCarousel() {
-    const SLOT_PARAMS = getSlotParams();
+    const N = matchedEndings.length;
+    const slots = getSlotParams();
+
+    const leftIdx  = (carouselIndex - 1 + N) % N;
+    const rightIdx = (carouselIndex + 1) % N;
+
     carouselCards.forEach((card, i) => {
-      // Which visual slot does card i occupy?
-      const slot = ((i - carouselIndex) % 3 + 3) % 3;
-      const p = SLOT_PARAMS[slot];
+      let p;
+      if (i === carouselIndex) {
+        p = slots.front;
+      } else if (i === leftIdx) {
+        p = slots.backLeft;
+      } else if (i === rightIdx) {
+        p = slots.backRight;
+      } else {
+        p = slots.hidden;
+      }
 
       card.style.transform = `translate(${p.x}px, ${p.y}px) scale(${p.scale})`;
       card.style.opacity = p.opacity;
       card.style.filter = `brightness(${p.brightness})`;
       card.style.zIndex = p.z;
-      card.classList.toggle('is-front', slot === 0);
+      card.classList.toggle('is-front', i === carouselIndex);
     });
   }
 
   btnPrev.addEventListener('click', () => {
-    carouselIndex = (carouselIndex + 2) % 3;
+    const N = matchedEndings.length;
+    carouselIndex = (carouselIndex - 1 + N) % N;
     updateCarousel();
   });
 
   btnNext.addEventListener('click', () => {
-    carouselIndex = (carouselIndex + 1) % 3;
+    const N = matchedEndings.length;
+    carouselIndex = (carouselIndex + 1) % N;
     updateCarousel();
   });
 

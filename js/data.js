@@ -42,7 +42,10 @@ const QUESTIONS = [
 ];
 
 // Ordered by priority: most iconic first.
-// The algorithm picks the first 3 whose requiredTags are ALL present in the player's tags.
+// Three endings are ALWAYS available (Hermit, Emperor, Chariot).
+// Additional endings are unlocked when ALL their requiredTags match the player's tags.
+// IDs of the three always-unlocked endings:
+const ALWAYS_UNLOCKED = ['at-peace-with-himself', 'remain-in-czarna-wazka', 'lazarz'];
 const ENDINGS = [
   {
     id: "mirror",

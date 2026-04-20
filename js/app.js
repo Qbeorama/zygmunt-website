@@ -95,13 +95,19 @@
   //   Front (bottom-center): large, bright, high z-index
   //   Back-left: smaller, dimmed
   //   Back-right: smaller, dimmed
-  const SLOT_PARAMS = [
-    { x: 0, y: 30, scale: 1, opacity: 1, brightness: 1, z: 3 },
-    { x: -180, y: -30, scale: 0.72, opacity: 0.55, brightness: 0.6, z: 1 },
-    { x: 180, y: -30, scale: 0.72, opacity: 0.55, brightness: 0.6, z: 1 },
-  ];
+  function getSlotParams() {
+    const narrow = window.innerWidth <= 600;
+    const xOff = narrow ? 110 : 180;
+    const yOff = narrow ? 20 : 30;
+    return [
+      { x: 0, y: yOff, scale: 1, opacity: 1, brightness: 1, z: 3 },
+      { x: -xOff, y: -yOff, scale: 0.72, opacity: 0.55, brightness: 0.6, z: 1 },
+      { x: xOff, y: -yOff, scale: 0.72, opacity: 0.55, brightness: 0.6, z: 1 },
+    ];
+  }
 
   function updateCarousel() {
+    const SLOT_PARAMS = getSlotParams();
     carouselCards.forEach((card, i) => {
       // Which visual slot does card i occupy?
       const slot = ((i - carouselIndex) % 3 + 3) % 3;
@@ -196,12 +202,14 @@
       document.getElementById('ending-video-title').textContent = ending.title;
       setMarkdownText(document.getElementById('ending-video-text'), text);
       showScreen('endingVideo');
+      videoScreen.scrollTop = 0;
     } else {
       document.getElementById('ending-img').src = ending.image;
       document.getElementById('ending-image-type').textContent = typeLabel;
       document.getElementById('ending-image-title').textContent = ending.title;
       setMarkdownText(document.getElementById('ending-image-text'), text);
       showScreen('endingImage');
+      screens.endingImage.scrollTop = 0;
     }
   }
 

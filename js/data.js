@@ -30,6 +30,15 @@ const QUESTIONS = [
       { text: "Kolejnym tropem w długim i żmudnym śledztwie.", tags: ["procedural"] },
     ],
   },
+  {
+    id: "de-profundis",
+    text: "Do kogo Zygmunt napisał swój pierwszy list w De Profundis?",
+    answers: [
+      { text: "Do Liny.", tags: ["lina"] },
+      { text: "Do Alistara.", tags: ["alistair"] },
+      { text: "Do Elżbiety.", tags: ["elzbieta"] },
+    ],
+  },
 ];
 
 // Ordered by priority: most iconic first.
@@ -114,6 +123,16 @@ const ENDINGS = [
     variant: "video",
     video: "videos/peaceful-remain-in-paris-ending.mp4",
     text: "Nikt nie pamiętał Zygmunta. Listy spłonęły w kominku jakiejś wiedeńskiej kamienicy. Durand — jeśli w ogóle istniał — zniknął bez śladu. Historia nie znosi próżni, ale czasem robi wyjątek.",
+  },
+  {
+    id: "lina-keller",
+    title: "Lina Keller",
+    type: "canonic",
+    requiredTags: ["lina"],
+    tarotCard: "18-TheMoon",
+    variant: "video",
+    video: "videos/lina-keller-ending.mp4",
+    textKey: "lina-keller",
   },
   {
     id: "alistair-mckinnon",

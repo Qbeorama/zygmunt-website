@@ -250,6 +250,7 @@ html, body {
 #screen-ending-video {
   overflow-y: auto;
   align-items: flex-start;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 .ending-video-bg {
@@ -262,30 +263,26 @@ html, body {
   z-index: 0;
 }
 
-/* Dark overlay between video and text */
+/* No longer needed as pseudo-element — tint is on the screen itself */
 #screen-ending-video::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1;
-  pointer-events: none;
+  background: none;
 }
+
 
 /* Lighter variant for dark videos */
 #screen-ending-video.ending-light .ending-video-bg {
   filter: blur(5px) brightness(0.78);
 }
-#screen-ending-video.ending-light::before {
+#screen-ending-video.ending-light {
   background: rgba(0, 0, 0, 0.2);
 }
 
 .ending-video-overlay {
   position: relative;
   z-index: 2;
-  max-width: min(130ch, 90vw);
+  max-width: min(75ch, 86vw);
   text-align: center;
-  padding: 2rem;
+  padding: 2.5rem 3rem;
   margin: auto;
 }
 
@@ -318,7 +315,7 @@ html, body {
 }
 
 .ending-text p + p {
-  margin-top: 1.2em;
+  margin-top: 0.85em;
 }
 
 .btn-again {
@@ -421,7 +418,7 @@ html, body {
 
   /* Video ending */
   .ending-video-overlay {
-    padding: 1.5rem;
+    padding: 1.5rem 1.25rem;
   }
 
   /* Shared ending text */

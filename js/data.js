@@ -45,18 +45,8 @@ const QUESTIONS = [
 // Three endings are ALWAYS available (Hermit, Emperor, Chariot).
 // Additional endings are unlocked when ALL their requiredTags match the player's tags.
 // IDs of the three always-unlocked endings:
-const ALWAYS_UNLOCKED = ['at-peace-with-himself', 'remain-in-czarna-wazka', 'lazarz'];
+const ALWAYS_UNLOCKED = ['at-peace-with-himself', 'remain-in-czarna-wazka', 'pursue-lazarz-kiselew'];
 const ENDINGS = [
-  {
-    id: "mirror",
-    title: "Lustro i Cień",
-    type: "canonic",
-    requiredTags: ["sane", "durand-mirror"],
-    tarotCard: "18-TheMoon",
-    variant: "video",
-    video: "videos/peaceful-remain-in-paris-ending.mp4",
-    text: "Zygmunt odnalazł w Durandzie siebie samego. Dwa cienie, które przez lata tańczyły wokół jednego płomienia, w końcu zlały się w jedno. Nie było zwycięzcy. Nie było przegranego. Był tylko spokój.",
-  },
   {
     id: "ninth-gate",
     title: "Dziewiąta Brama",
@@ -78,14 +68,14 @@ const ENDINGS = [
     text: "Zygmunt zrozumiał wreszcie, że szaleństwo nie było jego przekleństwem — było darem. On i Durand, dwa skrzydła tej samej ważki, krążyli nad czarną wodą jeziora, którego nikt inny nie widział. Kapituła zebrała się po raz ostatni. Protokół spisano atramentem, który znikał o świcie.",
   },
   {
-    id: "lazarz",
+    id: "pursue-lazarz-kiselew",
     title: "Pościg za Łazarzem",
     type: "non-canonic",
     requiredTags: ["sane", "durand-enemy"],
     tarotCard: "07-TheChariot",
     variant: "video",
     video: "videos/pursue-lazarz-kiselew-ending.mp4",
-    textKey: "lazarz",
+    textKey: "pursue-lazarz-kiselew",
   },
   {
     id: "lina-keller",

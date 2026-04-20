@@ -37,7 +37,7 @@ Screens toggle via `showScreen(key)` which swaps the `.active` CSS class:
 Each answer adds tags to `collectedTags[]`. After all 4 questions, `selectEndings()` runs:
 
 1. Include any ending whose `requiredTags` are ALL present in `collectedTags`
-2. Guarantee 3 always-unlocked endings: `at-peace-with-himself`, `remain-in-czarna-wazka`, `lazarz`
+2. Guarantee 3 always-unlocked endings: `at-peace-with-himself`, `remain-in-czarna-wazka`, `pursue-lazarz-kiselew`
 
 Result: `matchedEndings[]` with at least 3 endings, fed into the carousel.
 
@@ -50,14 +50,13 @@ Result: `matchedEndings[]` with at least 3 endings, fed into the carousel.
 | 3 | Keys of Enoch? | `anti-esoteric`, `klucze-henocha`, `procedural` |
 | 4 | First De Profundis letter to? | `lina`, `alistair`, `elzbieta` |
 
-### Endings (8 total)
+### Endings (7 total)
 
 | ID | Required Tags | Tarot Card | Always Unlocked? |
 |----|--------------|------------|------------------|
-| `mirror` | sane + durand-mirror | 18-TheMoon | No |
 | `ninth-gate` | durand-mentor + klucze-henocha | 15-TheDevil | No |
 | `czarna-wazka` | insane + durand-mirror | 15-TheDevil | No |
-| `lazarz` | sane + durand-enemy | 07-TheChariot | Yes |
+| `pursue-lazarz-kiselew` | sane + durand-enemy | 07-TheChariot | Yes |
 | `lina-keller` | lina | 18-TheMoon | No |
 | `remain-in-czarna-wazka` | sane | 04-TheEmperor | Yes |
 | `at-peace-with-himself` | sane | 09-TheHermit | Yes |

@@ -1,5 +1,5 @@
 window.TEXTS = window.TEXTS || {};
-window.TEXTS['lazarz'] = `*„Zapał i determinacja Elżbiety w kierunku rozwiązania tajemnicy śmierci Josepha wbiły się w moje serce jak cierń. Zadawały pytanie: »A co Ty zrobiłeś w kwestii tajemniczych wydarzeń z Port Arthur?«."*
+window.TEXTS['pursue-lazarz-kiselew'] = `*„Zapał i determinacja Elżbiety w kierunku rozwiązania tajemnicy śmierci Josepha wbiły się w moje serce jak cierń. Zadawały pytanie: »A co Ty zrobiłeś w kwestii tajemniczych wydarzeń z Port Arthur?«."*
 
 — List Zygmunta do Alistaira, Paryż, 14 listopada 1930
 

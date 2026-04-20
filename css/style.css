@@ -294,7 +294,10 @@ html, body {
 #screen-ending-video {
   overflow-y: auto;
   align-items: flex-start;
-  background: rgba(0, 0, 0, 0.4);
+  background: transparent;
+}
+#screen-ending-video::after {
+  display: none;
 }
 
 .ending-video-bg {
@@ -307,9 +310,13 @@ html, body {
   z-index: 0;
 }
 
-/* No longer needed as pseudo-element — tint is on the screen itself */
 #screen-ending-video::before {
-  background: none;
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
 }
 
 
@@ -317,17 +324,23 @@ html, body {
 #screen-ending-video.ending-light .ending-video-bg {
   filter: blur(5px) brightness(0.78);
 }
-#screen-ending-video.ending-light {
+#screen-ending-video.ending-light::before {
   background: rgba(0, 0, 0, 0.2);
 }
 
 .ending-video-overlay {
   position: relative;
   z-index: 2;
-  max-width: min(75ch, 86vw);
+  width: min(86vw, 75ch);
   text-align: center;
   padding: 2.5rem 3rem;
   margin: auto;
+}
+
+@media (min-width: 1400px) {
+  .ending-video-overlay {
+    width: min(88vw, 84ch);
+  }
 }
 
 /* ============================================================

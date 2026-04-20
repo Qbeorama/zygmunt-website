@@ -116,6 +116,16 @@ const ENDINGS = [
     text: "Nikt nie pamiętał Zygmunta. Listy spłonęły w kominku jakiejś wiedeńskiej kamienicy. Durand — jeśli w ogóle istniał — zniknął bez śladu. Historia nie znosi próżni, ale czasem robi wyjątek.",
   },
   {
+    id: "alistair-mckinnon",
+    title: "Alistar McKinnon ending",
+    type: "canonic",
+    requiredTags: [],
+    tarotCard: "19-TheSun",
+    variant: "video",
+    video: "videos/gus-superman-clip.mp4",
+    textKey: "alistair-mckinnon",
+  },
+  {
     id: "reunion",
     title: "Ostatnie Spotkanie",
     type: "canonic",

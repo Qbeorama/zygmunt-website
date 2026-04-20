@@ -31,12 +31,13 @@
   function updateEndingsCounter() {
     const discovered = getDiscoveredEndings().size;
     const total = ENDINGS.length;
-    endingsCounterEl.textContent = `Odkryłeś ${discovered} z ${total} zakończeń`;
+    endingsCounterEl.textContent = `Odkryto ${discovered} z ${total} zakończeń`;
     endingsCounterEl.classList.add('visible');
   }
 
   // --- DOM refs ---
   const screens = {
+    intro: document.getElementById('screen-intro'),
     questions: document.getElementById('screen-questions'),
     tarot: document.getElementById('screen-tarot'),
     endingImage: document.getElementById('screen-ending-image'),
@@ -291,4 +292,9 @@
   // --- INIT ---
   updateEndingsCounter();
   renderQuestion();
+
+  // Start button on intro screen
+  document.getElementById('btn-start').addEventListener('click', () => {
+    showScreen('questions');
+  });
 })();

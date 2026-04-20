@@ -186,6 +186,34 @@
     updateCarousel();
   });
 
+  // --- TOUCH SWIPE on carousel ---
+  (function () {
+    let startX = 0;
+    let startY = 0;
+    let tracking = false;
+
+    carouselEl.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      tracking = true;
+    }, { passive: true });
+
+    carouselEl.addEventListener('touchend', (e) => {
+      if (!tracking) return;
+      tracking = false;
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) < 40 || Math.abs(dy) > Math.abs(dx)) return;
+      const N = matchedEndings.length;
+      if (dx < 0) {
+        carouselIndex = (carouselIndex + 1) % N;
+      } else {
+        carouselIndex = (carouselIndex - 1 + N) % N;
+      }
+      updateCarousel();
+    }, { passive: true });
+  })();
+
   // Click on front card → pick it
   document.querySelector('.carousel').addEventListener('click', (e) => {
     const card = e.target.closest('.carousel-card.is-front');

@@ -134,44 +134,43 @@
   }
 
   // --- CIRCULAR CAROUSEL ---
-  // Always shows 3 visual slots (front, back-left, back-right),
-  // but cycles through N total cards.
-  function getSlotParams() {
-    const narrow = window.innerWidth <= 600;
-    const xOff = narrow ? 110 : 180;
-    const yOff = narrow ? 20 : 30;
-    return {
-      front:     { x: 0, y: yOff, scale: 1, opacity: 1, brightness: 1, z: 3 },
-      backLeft:  { x: -xOff, y: -yOff, scale: 0.72, opacity: 0.55, brightness: 0.6, z: 1 },
-      backRight: { x: xOff, y: -yOff, scale: 0.72, opacity: 0.55, brightness: 0.6, z: 1 },
-      hidden:    { x: 0, y: -yOff, scale: 0.5, opacity: 0, brightness: 0.4, z: 0 },
-    };
-  }
-
+  // Shows ALL cards in a fan layout. The selected card is front-center,
+  // others are spread evenly to the left and right behind it.
   function updateCarousel() {
     const N = matchedEndings.length;
-    const slots = getSlotParams();
+    const narrow = window.innerWidth <= 600;
 
-    const leftIdx  = (carouselIndex - 1 + N) % N;
-    const rightIdx = (carouselIndex + 1) % N;
+    // Spacing between adjacent cards (px)
+    const cardSpacing = narrow ? 70 : 110;
+    const yOff = narrow ? 20 : 30;
 
     carouselCards.forEach((card, i) => {
-      let p;
-      if (i === carouselIndex) {
-        p = slots.front;
-      } else if (i === leftIdx) {
-        p = slots.backLeft;
-      } else if (i === rightIdx) {
-        p = slots.backRight;
-      } else {
-        p = slots.hidden;
-      }
+      // Signed offset from the selected card (wrapping for circular order)
+      let offset = i - carouselIndex;
+      if (offset > N / 2)  offset -= N;
+      if (offset < -N / 2) offset += N;
 
-      card.style.transform = `translate(${p.x}px, ${p.y}px) scale(${p.scale})`;
-      card.style.opacity = p.opacity;
-      card.style.filter = `brightness(${p.brightness})`;
-      card.style.zIndex = p.z;
-      card.classList.toggle('is-front', i === carouselIndex);
+      const isFront = offset === 0;
+      const absOff = Math.abs(offset);
+
+      // X position: spread cards linearly by offset
+      const x = offset * cardSpacing;
+      // Y position: front card is lower (closer), others rise toward back
+      const y = isFront ? yOff : -yOff;
+      // Scale: front = 1, shrink further cards
+      const scale = isFront ? 1.0 : Math.max(0.55, 0.72 - absOff * 0.04);
+      // Opacity: front = 1, dim further cards
+      const opacity = isFront ? 1.0 : Math.max(0.35, 0.6 - absOff * 0.05);
+      // Brightness: front = full, dim further cards
+      const brightness = isFront ? 1.0 : Math.max(0.4, 0.6 - absOff * 0.04);
+      // Z-index: front is on top, others layered by closeness
+      const z = isFront ? 10 : Math.max(1, 5 - absOff);
+
+      card.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+      card.style.opacity = opacity;
+      card.style.filter = `brightness(${brightness})`;
+      card.style.zIndex = z;
+      card.classList.toggle('is-front', isFront);
     });
   }
 

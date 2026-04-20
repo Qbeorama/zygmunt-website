@@ -188,6 +188,8 @@
 
     if (ending.variant === 'video') {
       const vid = document.getElementById('ending-video');
+      const videoScreen = document.getElementById('screen-ending-video');
+      videoScreen.classList.toggle('ending-light', ending.id === 'lina-keller');
       vid.src = ending.video;
       vid.play().catch(() => {});
       document.getElementById('ending-video-type').textContent = typeLabel;

@@ -58,16 +58,6 @@ const ENDINGS = [
     textKey: "ninth-gate",
   },
   {
-    id: "czarna-wazka",
-    title: "Czarna Ważka",
-    type: "canonic",
-    requiredTags: ["insane", "durand-mirror"],
-    tarotCard: "15-TheDevil",
-    variant: "video",
-    video: "videos/czarna-wazka-kapitula-ending.mp4",
-    text: "Zygmunt zrozumiał wreszcie, że szaleństwo nie było jego przekleństwem — było darem. On i Durand, dwa skrzydła tej samej ważki, krążyli nad czarną wodą jeziora, którego nikt inny nie widział. Kapituła zebrała się po raz ostatni. Protokół spisano atramentem, który znikał o świcie.",
-  },
-  {
     id: "pursue-lazarz-kiselew",
     title: "Pościg za Łazarzem",
     type: "non-canonic",
@@ -110,7 +100,7 @@ const ENDINGS = [
   {
     id: "alistair-mckinnon",
     title: "Alistar McKinnon ending",
-    type: "canonic",
+    type: "non-canonic",
     requiredTags: [],
     tarotCard: "19-TheSun",
     variant: "video",

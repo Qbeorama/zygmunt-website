@@ -324,4 +324,10 @@
   document.getElementById('btn-start').addEventListener('click', () => {
     showScreen('questions');
   });
+
+  // Debug: clear discovered endings
+  document.getElementById('btn-debug-clear').addEventListener('click', () => {
+    localStorage.removeItem(STORAGE_KEY);
+    updateEndingsCounter();
+  });
 })();

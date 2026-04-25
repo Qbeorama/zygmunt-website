@@ -34,33 +34,35 @@ Screens toggle via `showScreen(key)` which swaps the `.active` CSS class:
 
 ## Tag System & Ending Selection
 
-Each answer adds tags to `collectedTags[]`. After all 4 questions, `selectEndings()` runs:
+Each answer adds tags to `collectedTags[]`. After all 6 questions, `selectEndings()` runs:
 
 1. Include any ending whose `requiredTags` are ALL present in `collectedTags`
-2. Guarantee 3 always-unlocked endings: `at-peace-with-himself`, `remain-in-czarna-wazka`, `pursue-lazarz-kiselew`
+2. Guarantee 1 always-unlocked ending: `at-peace-with-himself`
 
-Result: `matchedEndings[]` with at least 3 endings, fed into the carousel.
+Result: `matchedEndings[]` with at least 1 ending, fed into the carousel.
 
 ### Questions → Tags
 
 | Q# | Question (short) | Possible Tags |
 |----|-----------------|---------------|
-| 1 | Was Zygmunt insane? | `insane` or `sane` |
-| 2 | Who was Durand? | `durand-enemy`, `durand-mirror`, `durand-nobody`, `durand-mentor` |
-| 3 | Keys of Enoch? | `anti-esoteric`, `klucze-henocha`, `procedural` |
-| 4 | First De Profundis letter to? | `lina`, `alistair`, `elzbieta` |
+| 1 | First De Profundis letter to? | `lina` (others: no tag) |
+| 2 | Alistair's role? | `alistair` (others: no tag) |
+| 3 | Feelings toward Durand? | `durand-hatred-1`, `durand`, or `durand-hatred-1` |
+| 4 | Why join Kapituła? | `durand-hatred-2`, `kapitula`, or no tag |
+| 5 | Deepest fear? | `unworthy-of-love`, `at-peace-with-himself`, or no tag |
+| 6 | Was Zygmunt insane? | `insane` or `sane` |
 
 ### Endings (7 total)
 
 | ID | Required Tags | Tarot Card | Always Unlocked? |
 |----|--------------|------------|------------------|
-| `ninth-gate` | durand-mentor + klucze-henocha | 15-TheDevil | No |
-| `czarna-wazka` | insane + durand-mirror | 15-TheDevil | No |
-| `pursue-lazarz-kiselew` | sane + durand-enemy | 07-TheChariot | Yes |
+| `ninth-gate` | insane + durand | 15-TheDevil | No |
+| `pursue-lazarz-kiselew` | unworthy-of-love | 07-TheChariot | No |
 | `lina-keller` | lina | 18-TheMoon | No |
-| `remain-in-czarna-wazka` | sane | 04-TheEmperor | Yes |
+| `remain-in-czarna-wazka` | kapitula | 04-TheEmperor | No |
 | `at-peace-with-himself` | sane | 09-TheHermit | Yes |
-| `alistair-mckinnon` | *(none)* | 19-TheSun | No (but always matches) |
+| `goodbye-feast` | durand-hatred-1 + durand-hatred-2 + insane | 13-Death | No |
+| `alistair-mckinnon` | alistair | 19-TheSun | No |
 
 ## Carousel (js/app.js `updateCarousel()`)
 

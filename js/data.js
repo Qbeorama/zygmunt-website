@@ -27,7 +27,7 @@ const QUESTIONS = [
     answers: [
       { text: "Czysta pogarda, dodatkowo pogłębiona zazdrością o Agathę Devereux.", tags: ["durand-hatred-1"] },
       { text: "Nienawiść, silna na tyle, by przykryć dawny łączący ich podziw i szacunek.", tags: ["durand"] },
-      { text: "Pogarda, wynikająca z bycia odtrąconym przez kogoś, kogo widział za ojca.", tags: ["durand-hatred-1"] },
+      { text: "Żal, wynikający z bycia odtrąconym przez kogoś, kogo widział za ojca.", tags: ["durand-hatred-1"] },
     ],
   },
   {
@@ -35,7 +35,7 @@ const QUESTIONS = [
     text: "Z jakiego powodu Zygmunt byłby gotów dołączyć do Kapituły Czarnej Ważki?",
     answers: [
       { text: "Aby upokorzyć Duranda i pokazać mu, że są równi.", tags: ["durand-hatred-2"] },
-      { text: "Aby wykorzystać wpływ organizacji do tego, aby chronić swoich bliskich.", tags: ["remain-in-czarna-wazka"] },
+      { text: "Aby wykorzystać wpływ organizacji do tego, aby chronić swoich bliskich.", tags: ["kapitula"] },
       { text: "Aby wykorzystać zasoby Ważki, aby rozwiązać tajemnicę Kamieni z Tartessos.", tags: [] },
     ],
   },
@@ -43,7 +43,7 @@ const QUESTIONS = [
     id: "deepest-fear",
     text: "Jaki jest najgłębszy, najbardziej skryty lęk Zygmunta?",
     answers: [
-      { text: "Że w gruncie rzeczy jest niegodny miłości innych.", tags: [] },
+      { text: "Że w gruncie rzeczy jest niegodny miłości innych.", tags: ["unworthy-of-love"] },
       { text: "Że w głębi serca wykorzystuje wszystkich ludzi na swojej drodze i ich porzuca.", tags: ["at-peace-with-himself"] },
       { text: "Że odejdzie z tego świata, nie rozwiązawszy finalnie swojej Tajemnicy.", tags: [] },
     ],
@@ -59,16 +59,16 @@ const QUESTIONS = [
 ];
 
 // Ordered by priority: most iconic first.
-// Three endings are ALWAYS available (Hermit, Emperor, Chariot).
+// One ending is ALWAYS available (Hermit).
 // Additional endings are unlocked when ALL their requiredTags match the player's tags.
-// IDs of the three always-unlocked endings:
-const ALWAYS_UNLOCKED = ['at-peace-with-himself', 'remain-in-czarna-wazka', 'pursue-lazarz-kiselew'];
+// IDs of always-unlocked endings:
+const ALWAYS_UNLOCKED = ['at-peace-with-himself'];
 const ENDINGS = [
   {
     id: "ninth-gate",
     title: "Dziewiąta Brama",
     type: "non-canonic",
-    requiredTags: ["durand-mentor", "klucze-henocha"],
+    requiredTags: ["insane", "durand"],
     tarotCard: "15-TheDevil",
     variant: "video",
     video: "videos/ninth-gate-ending.mp4",
@@ -78,7 +78,7 @@ const ENDINGS = [
     id: "pursue-lazarz-kiselew",
     title: "Pościg za Łazarzem",
     type: "non-canonic",
-    requiredTags: ["sane", "durand-enemy"],
+    requiredTags: ["unworthy-of-love"],
     tarotCard: "07-TheChariot",
     variant: "video",
     video: "videos/pursue-lazarz-kiselew-ending.mp4",
@@ -98,7 +98,7 @@ const ENDINGS = [
     id: "remain-in-czarna-wazka",
     title: "Kapituła ending",
     type: "canonic",
-    requiredTags: ["sane"],
+    requiredTags: ["kapitula"],
     tarotCard: "04-TheEmperor",
     variant: "video",
     video: "videos/czarna-wazka-kapitula-ending.mp4",
@@ -128,7 +128,7 @@ const ENDINGS = [
     id: "alistair-mckinnon",
     title: "Alistar McKinnon ending",
     type: "non-canonic",
-    requiredTags: [],
+    requiredTags: ["alistair"],
     tarotCard: "19-TheSun",
     variant: "video",
     video: "videos/gus-superman-clip.mp4",

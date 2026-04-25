@@ -282,8 +282,8 @@ html, body {
    LAYOUT 3 — ENDING (IMAGE)
    ============================================================ */
 #screen-ending-image {
-  overflow-y: auto;
-  align-items: flex-start;
+  overflow: hidden;
+  align-items: stretch;
 }
 
 .ending-image-layout {
@@ -291,12 +291,14 @@ html, body {
   gap: 3rem;
   max-width: 900px;
   padding: 2rem;
-  align-items: flex-start;
   margin: auto;
+  height: 100%;
 }
 
 .ending-image-col {
   flex: 0 0 300px;
+  display: flex;
+  align-items: center;
 }
 .ending-image-col img {
   width: 100%;
@@ -309,6 +311,8 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  overflow-y: auto;
+  padding-right: 0.5rem;
 }
 
 /* ============================================================
@@ -507,11 +511,17 @@ html, body {
   }
 
   /* Image ending — stack vertically */
+  #screen-ending-image {
+    overflow-y: auto;
+    align-items: flex-start;
+  }
+
   .ending-image-layout {
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
     padding: 1.5rem;
+    height: auto;
   }
 
   .ending-image-col {
@@ -523,6 +533,8 @@ html, body {
   .ending-text-col {
     align-items: center;
     text-align: center;
+    overflow-y: visible;
+    padding-right: 0;
   }
 
   .ending-text-col .btn-again {

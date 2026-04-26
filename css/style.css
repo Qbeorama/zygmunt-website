@@ -498,16 +498,18 @@ html, body {
     gap: 0;
     padding: 0 48px;
     position: relative;
+    max-width: 100vw;
+    box-sizing: border-box;
   }
 
   .carousel-btn-prev {
     position: absolute;
-    left: 0;
+    left: 4px;
   }
 
   .carousel-btn-next {
     position: absolute;
-    right: 0;
+    right: 4px;
   }
 
   /* Image ending — stack vertically */

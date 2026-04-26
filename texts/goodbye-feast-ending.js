@@ -3,7 +3,7 @@ window.TEXTS['goodbye-feast'] = `Zygmunt od dawna zapowiadał Czarnym Ważkom pl
 
 Zanim jednak miało to nastąpić, zaprosił wszystkich swoich bliskich na pożegnalną kolację w swoim nowym mieszkaniu przy avenue Henri‑Martin.
 
-Choć umawianie terminu zajęło wieki, stawili się wszyscy: Ginette z Alistairem, Elżbieta z Henrykiem, Konrad z Alexem, Agata z Michałem, Lina, Sabine, Trish, a z dalekiej Islandii przybyła nawet Nestra.
+Choć umawianie terminu zajęło wieki, stawili się wszyscy: Ginette z Alistairem, Elżbieta z Henrykiem, Konrad z Alexem, Agata z Michałem, Lina, Sabine, Trish, Nora, a z dalekiej Islandii przybyła nawet Nestra.
 
 Wśród osób, które potwierdziły obecność był również Henry Durand, który, choć czas upływał, wciąż się nie pojawiał.
 
